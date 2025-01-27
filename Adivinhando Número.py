@@ -1,26 +1,30 @@
 # APRENDER ESTRUTURA DE REPETIÇÃO WHILE!!
 # COLOCAR A PERGUNTA SEMPRE DENTRO WHILE, PARA QUANDO O RESULTADO NÃO FOR CORREPONDENTE, O PROGRAMA REFAZER A PERGUNTA!
+# Tratamento de Erros de Entrada: O código acima pode gerar um erro ValueError se o usuário digitar algo que não pode ser convertido para um inteiro (por exemplo, letras ou símbolos). Adicionar um bloco try/except resolve esse problema:
 
 import random
 
-print("Adivinhando o número escolhido entre 0 e 10:")
-print("-"*32)
-
-número_escolhido = random.randint(0, 10)
+número = random.randint(1, 100)
 
 while True:
-        chute = int(input("Chute qual número foi escolhido: "))
+    try:
+        chute = int(input("Chute um número: "))
         print("-"*32)
 
-        if chute < número_escolhido:
-                print("Chute um número maior!: ")
-                print("-"*32)
+    except ValueError:
+        print("Entrada inválida. Por favor, digite um número inteiro.")
+        print("-"*32)
+        continue  # Volta para o início do loop
+    
+    if chute < número:
+        print("Chute um número maior!")
+        print("-"*32)
 
-        elif chute > número_escolhido:
-                print("Chute um número menor!: ")
-                print("-"*32)
+    elif chute > número:
+        print("Chute um número menor")
+        print("-"*32)
 
-        else:
-                print("Parabéns, você acertou o número escolhido!!")
-                print("-"*32)
-                break
+    else:
+        print("Parabéns, você adivinhou o número escolhido!")
+        print("-"*32)
+        break
